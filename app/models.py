@@ -4,6 +4,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from medilife.settings import EMAIL_HOST_USER
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
+
 
 
 # Create your models here.
@@ -22,7 +24,7 @@ class Specialty(models.Model):
         return self.name
     
 class Department(models.Model):
-    image = models.ImageField(upload_to='media/department-images')
+    image = models.ImageField(upload_to='department-images')
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, null= True, blank=True)
     description = RichTextField()
@@ -39,7 +41,7 @@ class Review(models.Model):
         return self.name
 
 class Doctor(models.Model):
-    image = models.ImageField(upload_to='media/doctor-images')
+    image = models.ImageField(upload_to='doctor-images')
     name = models.CharField(max_length=255)
     specialty = models.ForeignKey(Specialty, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
@@ -49,6 +51,34 @@ class Doctor(models.Model):
     def __str__(self):
         return self.name
     
+class Post(models.Model):
+    image = models.ImageField(upload_to='blog')
+    title = models.CharField(max_length=255)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now= True)
+    views = models.PositiveIntegerField(default=0)
+    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name='blog_post')
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=300, unique=True)
+    content = RichTextField()
+    
+    def __str__(self):
+        return self.title
+    
+class Comment(models.Model):
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True, blank=True, null=True)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)
+
 class Appointment(models.Model):
     APPOINTMENT_STATUS = (
         ('Pending', 'Pending'),

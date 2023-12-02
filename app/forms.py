@@ -1,5 +1,5 @@
 from django import forms
-from .models import Doctor, Department,Appointment  # Import your Doctor and Department models
+from .models import Doctor, Department,Appointment, Comment  # Import your Doctor and Department models
 
 class AppointmentForm(forms.ModelForm):
     patient_name = forms.CharField(label='Full Name',widget=forms.TextInput(attrs={'placeholder': 'Enter full name', 'required': True})
@@ -20,3 +20,20 @@ class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
         fields = ('patient_name', 'appointment_date', 'appointment_time', 'doctor', 'number', 'patient_email', 'department')
+
+class ContactForm(forms.Form):
+    name = forms.CharField(required=True, label = 'Name', widget= forms.TextInput(attrs={'placeholder':'Enter full name', 'class': 'form-control'}))
+    email = forms.EmailField(required=True,label = 'email', widget= forms.TextInput(attrs={'placeholder':'Enter your mail', 'class': 'form-control'}))
+    subject = forms.CharField(required=True,label = 'subject', widget= forms.TextInput(attrs={'placeholder':'Subject', 'class': 'form-control'}))
+    message = forms.CharField(required=True,label = 'message', widget= forms.Textarea(attrs={'placeholder':'Message', 'class': 'form-control'}))
+    # class Meta:
+    #     model =Contact
+    #     fields = ('name', 'email', 'subject', 'message')
+    
+class CommentForm(forms.ModelForm):
+    name = forms.CharField(label = 'name', widget= forms.TextInput(attrs={'placeholder':'Enter full name', 'class': 'form-control'}))
+    email = forms.EmailField(label = 'email', widget= forms.TextInput(attrs={'placeholder':'Enter your mail', 'class': 'form-control'}))
+    body = forms.CharField(label = 'content', widget= forms.Textarea(attrs={'placeholder':'Message', 'class': 'form-control'}))
+    class Meta:
+        model =Comment
+        fields = ('name', 'email', 'body')

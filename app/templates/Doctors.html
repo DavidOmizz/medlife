@@ -24,7 +24,22 @@
     <div class="expert_doctors_area doctor_page">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-lg-3">
+                {% if doctors %}
+                    {% for doctor in doctors %}
+                        <div class="col-md-6 col-lg-3">
+                            <div class="single_expert mb-40">
+                                <div class="expert_thumb">
+                                    <img src="{{ doctor.image.url }}" alt="">
+                                </div>
+                                <div class="experts_name text-center">
+                                    <h3>{{ doctor.name }}</h3>
+                                    <span>{{ doctor.specialty }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <!-- <div class="col-md-6 col-lg-3">
                     <div class="single_expert mb-40">
                         <div class="expert_thumb">
                             <img src="{% static 'img/experts/1.png' %}" alt="">
@@ -111,7 +126,7 @@
                             <span>Neurologist</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -120,7 +135,7 @@
     <!-- testmonial_area_start -->
     <div class="testmonial_area">
         <div class="testmonial_active owl-carousel">
-            <div class="single-testmonial testmonial_bg_1 overlay2">
+            <!-- <div class="single-testmonial testmonial_bg_1 overlay2">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-10 offset-xl-1">
@@ -128,8 +143,7 @@
                                 <div class="quote">
                                     <i class="flaticon-straight-quotes"></i>
                                 </div>
-                                <p>Donec imperdiet congue orci consequat mattis. Donec rutrum porttitor <br>
-                                    sollicitudin. Pellentesque id dolor tempor sapien feugiat ultrices nec sed neque.
+                                <p>Donec imperdiet congue orci consequat mattis. Donec rutrum porttitor <br>sollicitudin. Pellentesque id dolor tempor sapien feugiat ultrices nec sed neque.
                                     <br>
                                     Fusce ac mattis nulla. Morbi eget ornare dui. </p>
                                 <div class="testmonial_author">
@@ -179,13 +193,34 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            {% if reviews %}
+                {% for review in reviews %}
+                    <div class="single-testmonial testmonial_bg_1 overlay2">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-10 offset-xl-1">
+                                    <div class="testmonial_info text-center">
+                                        <div class="quote">
+                                            <i class="flaticon-straight-quotes"></i>
+                                        </div>
+                                        <p>{{ review.content }}</p>
+                                        <div class="testmonial_author">
+                                            <h4>{{ review.name }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
     <!-- testmonial_area_end -->
 
     <!-- business_expert_area_start  -->
-    <div class="business_expert_area">
+    <!-- <div class="business_expert_area">
         <div class="business_tabs_area">
             <div class="container">
                 <div class="row">
@@ -282,7 +317,7 @@
                           </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- business_expert_area_end  -->
 
     <!-- Emergency_contact start -->
@@ -307,7 +342,7 @@
                             <p>Esteem spirit temper too say adieus.</p>
                         </div>
                         <div class="info_button">
-                            <a href="#" class="boxed-btn3-white">Make an Appointment</a>
+                            <a href="#test-form" class="boxed-btn3-white popup-with-form">Make an Appointment</a>
                         </div>
                     </div>
                 </div>
