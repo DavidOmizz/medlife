@@ -73,10 +73,19 @@ def handle_form_submission(request, template_name, redirect_name,slug=None):
     department = Department.objects.all()
     review = Review.objects.all()
     doctor = Doctor.objects.all()
-    post = Post.objects.all()
     single_department = get_object_or_404(Department, slug=slug) if slug and 'department' in template_name else None
     single_post = get_object_or_404(Post, slug = slug) if slug and 'post' in template_name else None
     
+    
+    if request.method == 'GET':
+        query = request.GET.get('query')
+        if query:
+            post = Post.objects.filter(title__contains = query)
+        else:
+            post = Post.objects.all()
+            
+        
+            
     if request.method == 'POST':
         appointment = AppointmentForm(request.POST)
         contact = ContactForm(data=request.POST)
@@ -147,8 +156,8 @@ def single_blog(request, slug):
     category = Category.objects.all()
     department = Department.objects.all()
     post = get_object_or_404(Post, slug=slug)
-    # post.views += 1
-    # post.save() to update the number of views
+    post.views += 1
+    post.save() # to update the number of views
     comments = post.comments.filter(active=True)
     user_comment = None
     if request.method == 'POST':

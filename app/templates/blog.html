@@ -52,6 +52,10 @@
                                     </div>
                                 </article>
                             {% endfor %}
+                            {% else %}
+                                <div class="alert alert-info" role="alert">
+                                    No content found!
+                                </div>
                             {% endif %}
                         <!-- <article class="blog_item">
                             <div class="blog_item_img">
@@ -193,7 +197,7 @@
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder='Search Keyword'
                                             onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'Search Keyword'">
+                                            onblur="this.placeholder = 'Search Keyword'" name="query">
                                         <div class="input-group-append">
                                             <button class="btn" type="button"><i class="ti-search"></i></button>
                                         </div>
