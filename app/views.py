@@ -91,6 +91,7 @@ def handle_form_submission(request, template_name, redirect_name,slug=None):
         contact = ContactForm(data=request.POST)
         if appointment.is_valid():
             appointment.save()
+            messages.success(request, 'Your appointment has been scheduled successfully!')
             print("Form is valid. Data saved successfully.")
             return redirect(redirect_name)  # Redirect to the specified page after form submission
         else:
@@ -146,10 +147,10 @@ def contact(request):
     return handle_form_submission(request, 'contact.html', 'contact')
 
 def post(request):
-    return handle_form_submission(request, 'blog.html', 'blog')
+    return handle_form_submission(request, 'blog.html', 'post')
 
 def single_post(request, slug):
-    return handle_form_submission(request, 'single-blog.html', 'blog', slug)
+    return handle_form_submission(request, 'single-blog.html', 'single_blog', slug)
 
 def single_blog(request, slug):
     posts = Post.objects.all()[:4]
@@ -197,3 +198,7 @@ def single_blog(request, slug):
     }
         
     return render(request, 'single-blog.html', context)
+
+
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)

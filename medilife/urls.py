@@ -17,12 +17,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
-from django.conf.urls.static import static 
+from django.conf.urls.static import static
+from app.views import custom_404
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app.urls')),
 ]
+
+
+# handler404 = custom_404  # Set your custom 404 view
+handler404 = 'app.views.custom_404'  # Set your custom 404 view
+
+
 
 if settings.DEBUG: 
     urlpatterns += static(settings.STATIC_URL, 

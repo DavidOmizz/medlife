@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
     <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -121,9 +124,23 @@
         </div>
     </header>
     <!-- header-end -->
-
+    <!-- {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }} {% if message.tags == 'success' %}toast-message{% endif %}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+        
     {% block content %}
-
+        
     {% endblock %}
 
     <!-- footer start -->
@@ -284,6 +301,93 @@
     </form>
     <!-- form itself end -->
      
+    <!-- <script>
+        // Check if the page has a success message and display an alert
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.querySelector('.messages .success');
+            if (successMessage) {
+                alert(successMessage.textContent);
+            }
+        });
+    </script> -->
+    <!-- <script>
+        // Check if the page has a success message and display a toast
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.querySelector('.messages .success');
+            if (successMessage) {
+                Toastify({
+                    text: successMessage.textContent,
+                    duration: 3000,  // Toast duration in milliseconds
+                    gravity: 'top',  // Toast position: 'top', 'bottom', 'left', 'right'
+                    position: 'right',  // Gravity position: 'top', 'bottom', 'left', 'right'
+                    close: true,  // Whether to show a close button
+                    backgroundColor: '#4CAF50',  // Background color of the toast
+                    stopOnFocus: true,  // Stop the toast when the window/tab is focused
+                }).showToast();
+            }
+        });
+    </script> -->
+
+
+    <!-- <script>
+        // Check if the page has a success message and display a toast
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.querySelector('.messages .success');
+            if (successMessage) {
+                Toastify({
+                    text: successMessage.textContent,
+                    duration: 3000,
+                    gravity: 'top',
+                    position: 'right',
+                    close: true,
+                    backgroundColor: '#4CAF50',
+                    stopOnFocus: true,
+                }).showToast();
+            }
+        });
+    </script>
+     -->
+
+    <!-- Add the Toastify script -->
+    <!-- <script>
+        // Check if the page has a success message and display a toast
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.querySelector('.messages .success');
+            if (successMessage) {
+                Toastify({
+                    text: successMessage.textContent,
+                    duration: 3000,
+                    gravity: 'top',
+                    position: 'right',
+                    close: true,
+                    backgroundColor: '#4CAF50',
+                    stopOnFocus: true,
+                }).showToast();
+            }
+        });
+    </script> -->
+    <script>
+        // Check if the page has a success message and display a toast
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = document.querySelector('.messages .success');
+            if (successMessage) {
+                // Hide the success message element
+                successMessage.style.display = 'none';
+    
+                // Show the Toastify toast
+                Toastify({
+                    text: successMessage.textContent,
+                    duration: 3000,
+                    gravity: 'top',
+                    position: 'right',
+                    close: true,
+                    backgroundColor: '#009DFF',
+                    stopOnFocus: true,
+                }).showToast();
+            }
+        });
+    </script>
+    
 
 
     <!-- JS here -->
