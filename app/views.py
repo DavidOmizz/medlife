@@ -75,7 +75,7 @@ def handle_form_submission(request, template_name, redirect_name,slug=None):
     doctor = Doctor.objects.all()
     single_department = get_object_or_404(Department, slug=slug) if slug and 'department' in template_name else None
     single_post = get_object_or_404(Post, slug = slug) if slug and 'post' in template_name else None
-    
+    post = Post.objects.all()  # Initialize post variable
     
     if request.method == 'GET':
         query = request.GET.get('query')
@@ -103,15 +103,20 @@ def handle_form_submission(request, template_name, redirect_name,slug=None):
             message = f"Email:{email}, Name:{name}, sent you a message:{contact.cleaned_data['message']}"
             # contact.save()
             # print(email)
+            messages.success(request, 'Your message was sent successfully')
             send_mail(
                     subject,
                     message,
                     email,
                     ["davidomisakin4good@gmail.com"],
                     fail_silently=False,
-                )   
+                )  
+            
+            contact = ContactForm() 
         else:
-            print("Form errors:", contact.errors)        
+            print("Form errors:", contact.errors)   
+            contact = ContactForm()
+            appointment = AppointmentForm()     
     else:
         contact = ContactForm()
         appointment = AppointmentForm()
