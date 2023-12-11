@@ -4,6 +4,7 @@ from .models import *
 from django.http import JsonResponse
 from django.core.mail import send_mail,BadHeaderError
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 # Create your views here.
 # def home(request):
@@ -83,6 +84,10 @@ def handle_form_submission(request, template_name, redirect_name,slug=None):
             post = Post.objects.filter(title__contains = query)
         else:
             post = Post.objects.all()
+
+    paginator = Paginator(post, 1)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
             
         
             
@@ -130,6 +135,7 @@ def handle_form_submission(request, template_name, redirect_name,slug=None):
         'cform': contact,
         'posts': post,
         'single_post': single_post,
+        "page_obj": page_obj
     }
     
     return render(request, template_name, context)

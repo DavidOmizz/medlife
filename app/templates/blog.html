@@ -28,8 +28,8 @@
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar">
-                        {% if posts %}
-                            {% for post in posts %}
+                        {% if page_obj %}
+                            {% for post in page_obj %}
                                 <article class="blog_item">
                                     <div class="blog_item_img">
                                         <img class="card-img rounded-0" src="{{ post.image.url }}" alt="">
@@ -167,7 +167,7 @@
                             </div>
                         </article> -->
 
-                        <nav class="blog-pagination justify-content-center d-flex">
+                        <!-- <nav class="blog-pagination justify-content-center d-flex">
                             <ul class="pagination">
                                 <li class="page-item">
                                     <a href="#" class="page-link" aria-label="Previous">
@@ -186,7 +186,43 @@
                                     </a>
                                 </li>
                             </ul>
+                        </nav> -->
+                        <nav class="blog-pagination justify-content-center d-flex">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    {% if page_obj.has_previous %}
+                                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link" aria-label="Previous">
+                                            <i class="ti-angle-left"></i>
+                                        </a>
+                                    {% else %}
+                                        <span class="page-link disabled" aria-label="Previous">
+                                            <i class="ti-angle-left"></i>
+                                        </span>
+                                    {% endif %}
+                                </li>
+                                <!-- {% for num in page_obj.paginator.page_range %}
+                                    <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                                        <a href="?page={{ num }}" class="page-link">{{ num }}</a>
+                                    </li>
+                                {% endfor %} -->
+                                <li class="page-item">
+                                    <a href="?page={{ page_obj.number }}" class="page-link">{{ page_obj.number }}</a>
+                                </li>
+                                <li class="page-item">
+                                    {% if page_obj.has_next %}
+                                        <a href="?page={{ page_obj.next_page_number }}" class="page-link" aria-label="Next">
+                                            <i class="ti-angle-right"></i>
+                                        </a>
+                                    {% else %}
+                                        <span class="page-link disabled" aria-label="Next">
+                                            <i class="ti-angle-right"></i>
+                                        </span>
+                                    {% endif %}
+                                </li>
+                            </ul>
                         </nav>
+                        
+                        
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -376,7 +412,7 @@
         </div>
     </section>
     <!--================Blog Area =================-->
-
+    
     <!-- Emergency_contact start -->
    <div class="Emergency_contact">
     <div class="conatiner-fluid p-0">
