@@ -14,7 +14,8 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-STATIC_ROOT = '/home/medilife/medilife/static'
+STATIC_ROOT = '/home/medilife/medlife/media'
+
 
 # from dotenv import load_dotenv
 from decouple import config
