@@ -142,7 +142,8 @@
     {% block content %}
         
     {% endblock %}
-
+    <div class="msg" data-status="offline">You're offline 😢</div>
+    <div class="msg" data-status="online">You're connected 🔗</div>
     <!-- footer start -->
     <footer class="footer">
         <div class="footer_top">
@@ -287,6 +288,7 @@
                         <!-- <input type="text"  placeholder="Phone no."> -->
                         {{ appointment.number }}
                     </div>
+                    <span class="error">{{ appointment.number.errors }}</span>
                     <div class="col-xl-12">
                         <!-- <input type="email"  placeholder="Email"> -->
                         {{ appointment.patient_email }}
@@ -386,7 +388,81 @@
                 }).showToast();
             }
         });
+
+        // const status = document.querySelector('.status');
+        // window.addEventListener('load', () => {
+        // const handleNetworkChange = () => {
+        //     if (navigator.onLine) {
+        //         // status.classList.remove('offline');
+        //         console.log('Offline');
+        //     } else {
+        //         // status.classList.add('offline');
+        //         console.log('Online');
+        //     }
+        // };
+
+        // window.addEventListener('online', handleNetworkChange);
+        // window.addEventListener('offline', handleNetworkChange);
+        // });
+        const status = document.querySelector('.status');
+        window.addEventListener('load', function() {
+            if (navigator.onLine) {
+                // User is online
+                // alert('You are currently online.');
+                // Toastify({
+                //     text: 'You are currently online',
+                //     duration: 3000,
+                //     gravity: 'bottom',
+                //     position: 'center',
+                //     close: true,
+                //     backgroundColor: 'green',
+                //     stopOnFocus: true,
+                // }).showToast();
+
+            } else {
+                // User is offline
+                // alert('You are currently offline. Please check your internet connection.');
+                Toastify({
+                    text: 'You are currently offline. Please check your internet connection.',
+                    duration: 5000,
+                    gravity: 'bottom',
+                    position: 'center',
+                    close: true,
+                    backgroundColor: 'red',
+                    stopOnFocus: true,
+                }).showToast();
+            }
+
+            // Event listener to handle online/offline changes
+            window.addEventListener('online', function() {
+                Toastify({
+                    text: 'You are now online.',
+                    duration: 3000,
+                    gravity: 'bottom',
+                    position: 'center',
+                    close: true,
+                    backgroundColor: 'green',
+                    stopOnFocus: true,
+                }).showToast();
+                // alert('You are now online.');
+            });
+
+            window.addEventListener('offline', function() {
+                // alert('You are now offline. Please check your internet connection.');
+                Toastify({
+                    text: 'You are now offline. Please check your internet connection.',
+                    duration: 5000,
+                    gravity: 'bottom',
+                    position: 'center',
+                    close: true,
+                    backgroundColor: 'red',
+                    stopOnFocus: true,
+                }).showToast();
+            });
+        });
+
     </script>
+        
     
 
 

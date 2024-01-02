@@ -6261,3 +6261,11 @@ h6 {
   font-size: 12px;
 }
 /*# sourceMappingURL=style.css.map */
+
+.msg[data-status='offline'] {
+  color: red
+}
+
+.msg[data-status='online'] {
+  color: green
+}

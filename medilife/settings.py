@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'app.apps.AppConfig',
     'ckeditor',
     'ckeditor_uploader',
+    'phonenumber_field'
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"

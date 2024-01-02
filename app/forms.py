@@ -1,5 +1,6 @@
 from django import forms
 from .models import Doctor, Department,Appointment, Comment  # Import your Doctor and Department models
+from phonenumber_field.formfields import PhoneNumberField
 
 class AppointmentForm(forms.ModelForm):
     patient_name = forms.CharField(label='Full Name',widget=forms.TextInput(attrs={'placeholder': 'Enter full name', 'required': True})
@@ -13,7 +14,13 @@ class AppointmentForm(forms.ModelForm):
     appointment_time = forms.TimeField(widget=forms.TextInput(attrs={'placeholder': 'Enter your appointment time', 'type': 'time'})
     )
     doctor = forms.ModelChoiceField(queryset=Doctor.objects.all(),empty_label=None,widget=forms.Select(attrs={'required': True}))
-    number = forms.CharField(max_length=15,widget=forms.TextInput(attrs={'placeholder': 'Enter your phone number', 'type': 'number'}), required=True)
+    # number = forms.CharField(max_length=15,widget=forms.TextInput(attrs={'placeholder': 'Enter your phone number', 'type': 'number'}), required=True)
+    # number = PhoneNumberField(widget=forms.TextInput(attrs={'placeholder': 'Enter your phone number'}),required=True)
+    number = PhoneNumberField(
+        widget=forms.TextInput(attrs={'placeholder': 'Enter your phone number', 'class': 'form-control', 'id': 'phone_number'}),
+        required=True,
+        error_messages={'invalid': 'Enter a valid phone number (e.g., +12125552368)'}
+    )
     department = forms.ModelChoiceField(queryset=Department.objects.all(),empty_label=None, widget=forms.Select(attrs={'required': True})
     )
 
