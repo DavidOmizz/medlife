@@ -146,7 +146,7 @@ def home(request):
     return handle_form_submission(request, 'index.html', 'home')
 
 def department(request):
-    return handle_form_submission(request, 'Department.html','department')
+    return handle_form_submission(request, 'department.html','department')
 
 def single_department(request,slug):
     return handle_form_submission(request, 'single-department.html','department',slug)
