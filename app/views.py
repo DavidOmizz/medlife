@@ -146,13 +146,13 @@ def home(request):
     return handle_form_submission(request, 'index.html', 'home')
 
 def department(request):
-    return handle_form_submission(request, 'department.html','department')
+    return handle_form_submission(request, 'departments.html','department')
 
 def single_department(request,slug):
     return handle_form_submission(request, 'single-department.html','department',slug)
 
 def doctors(request):
-    return handle_form_submission(request, 'doctors.html', 'doctors')
+    return handle_form_submission(request, 'doctor.html', 'doctors')
 
 def contact(request):
     return handle_form_submission(request, 'contact.html', 'contact')
