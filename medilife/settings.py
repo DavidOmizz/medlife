@@ -15,6 +15,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_ROOT = '/home/medilife/medlife/media'
+STATIC_DIR = BASE_DIR / "static"
+MEDIA_ROOT = BASE_DIR / "media"
 
 
 # from dotenv import load_dotenv
@@ -133,7 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_DIR = BASE_DIR / 'static'
+# STATIC_DIR = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     STATIC_DIR
 ]
@@ -156,5 +158,5 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 
 
-MEDIA_ROOT = BASE_DIR / "media"
+# MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = '/media/'
