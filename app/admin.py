@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import *
 # Register your models here.
 admin.site.register(Category)
-admin.site.register(Appointment)
+# admin.site.register(Appointment)
 # admin.site.register(Department)
 admin.site.register(Review)
 admin.site.register(Doctor)
@@ -21,7 +21,13 @@ class BlogPostAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'body', 'active', 'created_on')
-    search_fields = ('name', 'email', 'body')    
+    search_fields = ('name', 'email', 'body')
+    
+        
+@admin.register(Appointment)
+class AppointmentAdmin(admin.ModelAdmin):
+    list_display = ('patient_name', 'doctor','department', 'status')
+    search_fields = ('patient_name', 'doctor', 'status')    
     
     
     
