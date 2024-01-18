@@ -2534,7 +2534,8 @@ h3 {
   background: #fff;
   display: inline-block;
   z-index: 9;
-  width: 681px;
+  /* width: 681px; */
+  width: 100% !important;
   padding: 60px 40px;
 }
 
