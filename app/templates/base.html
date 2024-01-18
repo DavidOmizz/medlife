@@ -254,48 +254,50 @@
         <div class="popup_box ">
             <div class="popup_inner">
                 <h3>Make an Appointment</h3>
-                <div class="row">
-                    <div class="col-xl-6">
-                        <!-- <input id="datepicker" placeholder="Pick date"> -->
-                        {{ appointment.appointment_date }}
-                    </div>
-                    <div class="col-xl-6">
-                        <!-- <input id="datepicker2" placeholder="Suitable time"> -->
-                        {{ appointment.appointment_time }}
-                    </div> 
-                    <div class="col-xl-6">
-                        <select class="form-select wide" id="default-select" name="department" required>
-                            <option value="" selected disabled>Select Department</option>
-                            {% for department in appointment.department.field.queryset %}
-                                <option value="{{ department.id }}">{{ department.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="col-xl-6">
-                        <select class="form-select wide" name="doctor" required>
-                            <option value="" selected disabled>Select Doctor</option>
-                            {% for doctor in appointment.doctor.field.queryset %}
-                                <option value="{{ doctor.id }}">{{ doctor.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    
-                    <div class="col-xl-6">
-                        <!-- <input type="text"  placeholder="Name"> -->
-                        {{ appointment.patient_name }}
-                    </div>
-                    <div class="col-xl-6">
-                        <!-- <input type="text"  placeholder="Phone no."> -->
-                        {{ appointment.number }}
-                    </div>
-                    <span class="error">{{ appointment.number.errors }}</span>
-                    <div class="col-xl-12">
-                        <!-- <input type="email"  placeholder="Email"> -->
-                        {{ appointment.patient_email }}
-                    </div>
-                    <div class="col-xl-12">
-                        {% csrf_token %}
-                        <button type="submit" class="boxed-btn3">Confirm</button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6 col-12">
+                            <!-- <input id="datepicker" placeholder="Pick date"> -->
+                            {{ appointment.appointment_date }}
+                        </div>
+                        <div class="col-xl-6 col-md-6">
+                            <!-- <input id="datepicker2" placeholder="Suitable time"> -->
+                            {{ appointment.appointment_time }}
+                        </div> 
+                        <div class="col-xl-6 col-md-6">
+                            <select class="form-select wide" id="default-select" name="department" required>
+                                <option value="" selected disabled>Select Department</option>
+                                {% for department in appointment.department.field.queryset %}
+                                    <option value="{{ department.id }}">{{ department.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-xl-6 col-md-6">
+                            <select class="form-select wide" name="doctor" required>
+                                <option value="" selected disabled>Select Doctor</option>
+                                {% for doctor in appointment.doctor.field.queryset %}
+                                    <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="col-xl-6 col-md-6">
+                            <!-- <input type="text"  placeholder="Name"> -->
+                            {{ appointment.patient_name }}
+                        </div>
+                        <div class="col-xl-6 col-md-6">
+                            <!-- <input type="text"  placeholder="Phone no."> -->
+                            {{ appointment.number }}
+                        </div>
+                        <span class="error">{{ appointment.number.errors }}</span>
+                        <div class="col-xl-12 col-md-6">
+                            <!-- <input type="email"  placeholder="Email"> -->
+                            {{ appointment.patient_email }}
+                        </div>
+                        <div class="col-xl-12">
+                            {% csrf_token %}
+                            <button type="submit" class="boxed-btn3">Confirm</button>
+                        </div>
                     </div>
                 </div>
             </div>
