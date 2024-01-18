@@ -2534,11 +2534,17 @@ h3 {
   background: #fff;
   display: inline-block;
   z-index: 9;
-  /* width: 681px; */
-  width: 100% !important;
+  width: 681px;
+  /* width: 100% !important; */
   padding: 60px 40px;
 }
 
+@media only screen and (min-width: 400px) and (max-width: 900px) {
+  .popup_box {
+    /* width: 350px; */
+    width: 400px !important;
+  }
+}
 /* line 54, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_bradcam.scss */
 .popup_box h3 {
   text-align: center;
@@ -6270,3 +6276,47 @@ h6 {
 .msg[data-status='online'] {
   color: green
 }
+
+
+.form-wrapper {
+  background: #000000;
+  opacity: .7;
+}
+.my-appointment-form {
+  padding: 10px;
+  width: 750px;
+  margin: auto;
+}
+.my-appointment-form input{
+  width: 100%;
+  /* margin: 5px; */
+  margin-top: 10px;
+  height: 50px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+.my-appointment-form::placeholder {
+  color: #919191;
+  font-weight: 400;
+}
+.my-appointment-form input:focus {
+  outline: none;
+}
+
+.my-appointment-form button {
+  width: 100%;
+  margin-top: 10px;
+  height: 50px;
+  padding: 15px;
+
+}
+
+.hide-form {
+  display: none;
+}
+.show-form {
+  display: block;
+}
+
+
