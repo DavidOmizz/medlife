@@ -141,7 +141,6 @@
         </ul>
     {% endif %}
 
-        
     {% block content %}
 
     {% endblock %}
@@ -296,7 +295,6 @@
                             <!-- <input type="text"  placeholder="Phone no."> -->
                             {{ appointment.number }}
                         </div>
-                        <span class="error">{{ appointment.number.errors }}</span>
                         <div class="col-xl-12 col-md-6">
                             <!-- <input type="email"  placeholder="Email"> -->
                             {{ appointment.patient_email }}
@@ -312,7 +310,6 @@
     </form>
     <!-- form itself end -->
 
-     
     <!-- <script>
         // Check if the page has a success message and display an alert
         document.addEventListener('DOMContentLoaded', function() {
@@ -389,9 +386,9 @@
                 // Show the Toastify toast
                 Toastify({
                     text: successMessage.textContent,
-                    duration: 3000,
+                    duration: 4000,
                     gravity: 'top',
-                    position: 'right',
+                    position: 'center',
                     close: true,
                     backgroundColor: '#009DFF',
                     stopOnFocus: true,

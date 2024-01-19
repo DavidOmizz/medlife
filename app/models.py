@@ -98,9 +98,12 @@ class Appointment(models.Model):
     
 @receiver(post_save, sender=Appointment)
 def send_approval_email(sender, instance, **kwargs):
-        
+         
     # Send an email to the doctor for approval
     from_email = EMAIL_HOST_USER
+    hos_subject = 'There is an Appointment'
+    hos_message = f"An appointment has been received \n Patient name: {instance.patient_name} \n Patient email: {instance.patient_email} \n\n Kindly supply attend to it.\n\n\nCheers"
+    hos_recipient_list = [from_email]
     doc_subject = 'You have an appointment'
     doc_message = f"An appointment has been received \n Patient name: {instance.patient_name} \n Patient email: {instance.patient_email} \n\n Kindly supply if you'll be available to move forward in the pipeline.\n\n\nCheers"
     # doc_message = f"An appointment has been received \n Patient name: {instance.patient_name} \n Patient email: {instance.patient_email} \n Date: {instance.appointment_date} \n Time: {instance.appointment_time} \n\n Kindly supply if you'll be available to move forward in the pipeline.\n\n\nCheers"
@@ -109,6 +112,7 @@ def send_approval_email(sender, instance, **kwargs):
     approved_doc_message = f"Hello {instance.doctor.name}, \n You have an approved appointment with {instance.patient_name}.\n\n Kindly be prepared ahead. Thanks  \n\n cheers"
 
     if instance.status == 'Pending':
+        send_mail(hos_subject, hos_message, from_email, hos_recipient_list)
         send_mail(doc_subject, doc_message, from_email, doc_recipient_list)
 
     # Send email to the doctor on the appointment
@@ -121,7 +125,6 @@ def send_approval_email(sender, instance, **kwargs):
         recipient_list = [instance.patient_email]
         send_mail(subject, message, from_email, recipient_list)
         send_mail(doc_subject, approved_doc_message, from_email, doc_recipient_list)
-
 
 
 # from django.db import models

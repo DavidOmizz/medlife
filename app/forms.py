@@ -20,7 +20,8 @@ class AppointmentForm(forms.ModelForm):
     number = PhoneNumberField(
         widget=forms.TextInput(attrs={'placeholder': 'Enter your phone number', 'class': 'form-control', 'id': 'phone_number'}),
         required=True,
-        error_messages={'invalid': 'Enter a valid phone number (e.g., +12125552368)'}
+        error_messages={'invalid': 'Enter a valid phone number (e.g., +12125552368)'},
+        region='NG',  # Set the default country code to Nigeria
     )
     department = forms.ModelChoiceField(queryset=Department.objects.all(),empty_label=None, widget=forms.Select(attrs={'required': True, 'class': 'form-control'})
     )
