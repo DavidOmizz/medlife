@@ -85,8 +85,8 @@ class Appointment(models.Model):
         ('Approved', 'Approved'),
     )
     patient_name = models.CharField(max_length=255)
-    appointment_date = models.DateField()
-    appointment_time = models.TimeField()
+    # appointment_date = models.DateField()
+    # appointment_time = models.TimeField()
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     number = models.CharField(max_length=15)
     patient_email = models.EmailField()
@@ -102,9 +102,11 @@ def send_approval_email(sender, instance, **kwargs):
     # Send an email to the doctor for approval
     from_email = EMAIL_HOST_USER
     doc_subject = 'You have an appointment'
-    doc_message = f"An appointment has been received \n Patient name: {instance.patient_name} \n Patient email: {instance.patient_email} \n Date: {instance.appointment_date} \n Time: {instance.appointment_time} \n\n Kindly supply if you'll be available to move forward in the pipeline.\n\n\nCheers"
+    doc_message = f"An appointment has been received \n Patient name: {instance.patient_name} \n Patient email: {instance.patient_email} \n\n Kindly supply if you'll be available to move forward in the pipeline.\n\n\nCheers"
+    # doc_message = f"An appointment has been received \n Patient name: {instance.patient_name} \n Patient email: {instance.patient_email} \n Date: {instance.appointment_date} \n Time: {instance.appointment_time} \n\n Kindly supply if you'll be available to move forward in the pipeline.\n\n\nCheers"
     doc_recipient_list = [instance.doctor.email]
-    approved_doc_message = f"Hello {instance.doctor.name}, \n You have an approved appointment with {instance.patient_name}. \n Date: {instance.appointment_date} \n Time: {instance.appointment_time} \n\n Kindly be prepared ahead. Thanks  \n\n cheers"
+    # approved_doc_message = f"Hello {instance.doctor.name}, \n You have an approved appointment with {instance.patient_name}. \n Date: {instance.appointment_date} \n Time: {instance.appointment_time} \n\n Kindly be prepared ahead. Thanks  \n\n cheers"
+    approved_doc_message = f"Hello {instance.doctor.name}, \n You have an approved appointment with {instance.patient_name}.\n\n Kindly be prepared ahead. Thanks  \n\n cheers"
 
     if instance.status == 'Pending':
         send_mail(doc_subject, doc_message, from_email, doc_recipient_list)
