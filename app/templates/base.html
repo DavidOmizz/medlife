@@ -34,10 +34,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- Example Bootstrap CDN links -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 
-
-    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -134,9 +132,7 @@
             {% endfor %}
         </ul>
     {% endif %} -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Open modal for @fat</button>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -144,38 +140,14 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 2000;">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
-            </div>
-          </div>
-        </div>
-      </div>
+
         
     {% block content %}
+
     {% endblock %}
     
-    <div class="msg" data-status="offline">You're offline 😢</div>
-    <div class="msg" data-status="online">You're connected 🔗</div>
+    <!-- <div class="msg" data-status="offline">You're offline 😢</div>
+    <div class="msg" data-status="online">You're connected 🔗</div> -->
     <!-- footer start -->
 
     
@@ -340,7 +312,6 @@
     </form>
     <!-- form itself end -->
 
-  
      
     <!-- <script>
         // Check if the page has a success message and display an alert
@@ -503,11 +474,6 @@
     </script>
         
     
-
-
-    
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 
     <!-- JS here -->

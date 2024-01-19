@@ -2539,7 +2539,7 @@ h3 {
   padding: 60px 40px;
 }
 
-@media only screen and (min-width: 400px) and (max-width: 900px) {
+@media only screen and (min-width: 300px) and (max-width: 900px) {
   .popup_box {
     /* width: 350px; */
     width: 400px !important;
