@@ -96,7 +96,7 @@ def handle_form_submission(request, template_name, redirect_name,slug=None):
         contact = ContactForm(data=request.POST)
         if appointment.is_valid():
             appointment.save()
-            messages.success(request, 'Your appointment has been scheduled successfully!')
+            messages.success(request, 'Your appointment has been scheduled successfully!\n a mail will be sent to you shortly')
             print("Form is valid. Data saved successfully.")
             return redirect(redirect_name)  # Redirect to the specified page after form submission
         else:
